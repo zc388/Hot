@@ -1,3 +1,31 @@
+#我自己的方法优化，当我的方法遇到一直减少时，即左右两边就是最大数时，时间复杂度为O(n)，但是最坏的情况是O(n²)，那我不如直接找到最高的点，从最高点向两端用我的方法，那这样就是O(n/2)，总之加起来就是O(n)
+
+height = [4,2,0,3,2,5]
+#python的好处哈哈哈哈哈，嵌套几层函数，直接找出最大值的索引
+max_height_index=height.index(max(height))
+n=len(height)
+ans=0
+
+#记录当前位置之前的最大高度
+#从数组的第一个元素开始，依次遍历到最高柱子所在的位置
+left_max=0
+l_ans=0
+for i in range(0,max_height_index):
+    left_max=max(left_max,height[i])
+    l_ans += left_max-height[i]
+
+
+right_max=0
+r_ans=0
+for j in range(n-1,max_height_index,-1):
+    right_max=max(right_max,height[j])
+    r_ans += right_max-height[j]
+
+print(r_ans+l_ans)
+
+
+
+
 #力扣，单调栈
 #单调栈压栈和弹栈时需要维护单调性，而且存的是索引，我存的是元素
 height = [0,1,0,2,1,0,1,3,2,1,2,1]
